@@ -1,0 +1,59 @@
+/* Estilos personalizados generales */
+body {
+    /* La fuente Inter se carga en el HTML, solo aplicamos el fondo */
+    background-color: #f7f9fc;
+}
+.sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+}
+.active-menu-item {
+    background-color: #e0f2fe; /* Fondo azul claro para el enlace activo */
+    color: #0d9488; /* Color principal (Teal) */
+    font-weight: 600;
+    border-left: 4px solid #0d9488;
+}
+.card-shadow {
+    /* Sombra suave para las tarjetas de resumen */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+.icon-container {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px; /* Círculo completo */
+}
+
+/* --- Estilo para la Responsividad Móvil de la Tabla --- */
+@media (max-width: 640px) {
+    .truck-table-header {
+        display: none; /* Oculta la cabecera de la tabla en móvil */
+    }
+    .truck-row {
+        /* Convierte la fila de la tabla en un bloque de tarjeta */
+        display: block;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-bottom: 1px solid #e5e7eb;
+        border-radius: 0.5rem; /* Pequeñas esquinas redondeadas */
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        background-color: white;
+    }
+    .truck-row td {
+        /* Cada celda se convierte en una fila con etiqueta (data-label) */
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        border: none; /* Elimina bordes de celda internos */
+    }
+    .truck-row td:before {
+        /* Añade el nombre de la columna como etiqueta (visible en móvil) */
+        content: attr(data-label);
+        font-weight: 600;
+        color: #4b5563; /* Color de texto gris oscuro */
+        padding-right: 1rem;
+    }
+}

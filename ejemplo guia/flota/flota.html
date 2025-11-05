@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flota de Camiones - Agro Factura</title>
+    <!-- Carga de Tailwind CSS para el diseño base y utilidades -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Enlace a los estilos personalizados (Aunque flota.css no está definido aquí, se mantiene por estructura) -->
+    <link rel="stylesheet" href="flota.css">
+    
+    <!-- Estilos generales de la aplicación para una mejor visualización (añadidos para el contexto) -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f9fc; /* Color de fondo claro */
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        .icon-container {
+            width: 48px;
+            height: 48px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    
+    <!-- El contenedor principal se simplifica al no tener sidebar -->
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- Área de Contenido Principal -->
+        <main class="flex-1 overflow-y-auto p-4 lg:p-8">
+            <div class="max-w-7xl mx-auto">
+                
+                <!-- Título y Botón de Navegación (Contenedor Flexible) -->
+                <!-- Se usa 'flex' y 'justify-between' para alinear el título a la izquierda y el botón a la derecha -->
+                <div class="flex justify-between items-start mb-6 lg:items-center">
+                    <!-- Contenedor del Título y Subtítulo -->
+                    <div>
+                        <h1 class="text-3xl font-extrabold text-gray-900 mb-2">Flota de Camiones</h1>
+                        <p class="text-gray-500">Gestión completa de vehículos de transporte y logística.</p>
+                    </div>
+                    
+                    <!-- Enlace para volver al menú principal (PC) -->
+                    <a href="../agro_factura_menu.html" class="hidden md:flex items-center text-teal-600 hover:text-teal-800 transition duration-150 p-2 rounded-xl">
+                        <!-- Icono de Flecha Izquierda SVG -->
+                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7"></path></svg>
+                        <span class="font-medium">Volver al Menú Principal</span>
+                    </a>
+                </div>
+
+                <!-- Tarjetas de Resumen (Responsive: 2 columnas en móvil, 4 en desktop) -->
+                <div class="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6 mb-8">
+                    
+                    <!-- Tarjeta 1: Total de Camiones -->
+                    <div class="bg-white p-5 rounded-xl card-shadow flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Total Flota</p>
+                            <p id="total-trucks-stat" class="text-3xl font-bold text-gray-900 mt-1">--</p>
+                        </div>
+                        <div class="icon-container bg-teal-100 text-teal-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10m-10 4h10m-9 4h10m-10 4h10m-10 4h10m-10 4h10m-10 4h10M5 7h14a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9a2 2 0 012-2z"></path></svg>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 2: Camiones Disponibles -->
+                    <div class="bg-white p-5 rounded-xl card-shadow flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">Disponibles</p>
+                            <p id="available-trucks-stat" class="text-3xl font-bold text-gray-900 mt-1">--</p>
+                        </div>
+                        <div class="icon-container bg-green-100 text-green-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 3: En Tránsito (Coincide con el Dashboard) -->
+                    <div class="bg-white p-5 rounded-xl card-shadow flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">En Tránsito</p>
+                            <p id="in-transit-stat" class="text-3xl font-bold text-gray-900 mt-1">--</p>
+                        </div>
+                        <div class="icon-container bg-yellow-100 text-yellow-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 4: En Mantenimiento -->
+                    <div class="bg-white p-5 rounded-xl card-shadow flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-500">En Mantenimiento</p>
+                            <p id="maintenance-stat" class="text-3xl font-bold text-gray-900 mt-1">--</p>
+                        </div>
+                        <div class="icon-container bg-red-100 text-red-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.82 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.82 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.82-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.82-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lista / Tabla de Camiones -->
+                <div class="bg-white rounded-xl card-shadow p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold text-gray-800">Detalle de la Flota</h2>
+                        <button class="bg-teal-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-teal-700 transition duration-150">
+                            + Nuevo Camión
+                        </button>
+                    </div>
+
+                    <!-- Contenedor de la Tabla/Lista Responsive -->
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <!-- Cabecera de la Tabla (Oculta en Móvil) -->
+                            <thead class="bg-gray-50 truck-table-header">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">
+                                        Placa
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Modelo
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Estado
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Conductor
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-lg">
+                                        Próx. Servicio
+                                    </th>
+                                </tr>
+                            </thead>
+                            <!-- Cuerpo de la Tabla/Lista -->
+                            <tbody id="truck-list-body" class="bg-white divide-y divide-gray-200">
+                                <!-- Filas de Camiones inyectadas por JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Enlace al script de lógica y datos -->
+    <script src="flota.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+/*
+ * Archivo: ubicaciones.css
+ * Descripción: Estilos específicos para el módulo de Ubicaciones (además de Tailwind CSS).
+ */
+
+/* Estilos para el panel lateral (drawer) que gestiona la creación/edición de ubicaciones. */
+#ubicacion-drawer {
+    /* Define la transición y la posición inicial (fuera de la pantalla) */
+    transition: transform 0.3s ease-out;
+    transform: translateX(100%);
+}
+
+/* Clase para abrir el drawer */
+#ubicacion-drawer.drawer-open {
+    /* Mueve el drawer a la posición visible */
+    transform: translateX(0);
+}
+
+/* Estilos para el overlay (fondo oscuro) */
+#drawer-overlay {
+    /* Oculto por defecto, se muestra con JavaScript */
+    transition: opacity 0.3s ease-out;
+    opacity: 0;
+}
+
+#drawer-overlay.visible {
+    opacity: 1;
+}
+
+/* Asegura que el panel lateral ocupe toda la pantalla en móvil y 1/3 en desktop */
+@media (max-width: 768px) {
+    #ubicacion-drawer {
+        width: 100%;
+    }
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Factura - Estructura Base</title>
+    <!-- NOTA: En Ionic, cargarías tu propio styles.css aquí. -->
+    <!-- Carga de Tailwind CSS (para la demo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Lucide Icons (para la demo) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="agro_factura_menu.css">
+</head>
+
+<body>
+    <!-- 
+    ================================================== 
+    CONTENEDOR PRINCIPAL DE LA APLICACIÓN
+    ================================================== 
+    -->
+    <div id="app-container">
+        <!-- 1. BARRA LATERAL (Sidebar) - Visible en Desktop/PC -->
+        <aside id="sidebar" class="hidden md:flex flex-col h-full bg-white border-r border-gray-200 shadow-xl shadow-gray-100 p-6">
+            <div class="text-2xl font-bold mb-10 flex items-center text-teal-700">
+                <i data-lucide="leaf" class="w-6 h-6 mr-3 text-emerald-500"></i>
+                Agro Factura
+            </div>
+
+            <nav class="space-y-2 flex-grow">
+                <!-- Título de la sección -->
+                <div class="text-xs font-semibold uppercase text-gray-400 pt-4 pb-2 px-3">Módulos Principales</div>
+
+                <!-- Botones de Navegación de Escritorio -->
+                <a href="facturacion/facturacion.html" class="flex items-center space-x-3 p-3 rounded-xl transition duration-150 ease-in-out bg-teal-50 text-teal-800 font-semibold shadow-sm hover:bg-teal-100">
+                    <i data-lucide="receipt-text" class="w-5 h-5"></i>
+                    <span>Facturación</span>
+                </a>
+                <a href="inventario/inventario.html" class="flex items-center space-x-3 p-3 rounded-xl transition duration-150 ease-in-out bg-teal-50 text-teal-800 font-semibold shadow-sm hover:bg-teal-100">
+                    <i data-lucide="boxes" class="w-5 h-5"></i>
+                    <span>Inventario</span>
+                </a>
+                <a href="ubicaciones/ubicaciones.html" class="flex items-center space-x-3 p-3 rounded-xl transition duration-150 ease-in-out bg-teal-50 text-teal-800 font-semibold shadow-sm hover:bg-teal-100">
+                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                    <span>Ubicaciones / Almacén</span>
+                </a>
+                <a href="flota/flota.html" class="flex items-center space-x-3 p-3 rounded-xl transition duration-150 ease-in-out bg-teal-50 text-teal-800 font-semibold shadow-sm hover:bg-teal-100">
+                    <i data-lucide="truck" class="w-5 h-5"></i>
+                    <span>Flota de Camiones</span>
+                </a>
+                <a href="contabilidad/contabilidad.html" class="flex items-center space-x-3 p-3 rounded-xl transition duration-150 ease-in-out bg-teal-50 text-teal-800 font-semibold shadow-sm hover:bg-teal-100">
+                    <i data-lucide="wallet" class="w-5 h-5"></i>
+                    <span>Contabilidad</span>
+                </a>
+            </nav>
+
+            <!-- Sección de Usuario/Configuración al final -->
+            <div class="border-t pt-4 mt-auto">
+                <a href="#" class="flex items-center space-x-3 p-3 rounded-xl text-gray-600 hover:bg-gray-100 transition duration-150 ease-in-out">
+                    <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-sm font-medium">U</div>
+                    <div>
+                        <p class="text-sm font-medium">Usuario Activo</p>
+                        <p class="text-xs text-gray-500">Configuración & Perfil</p>
+                    </div>
+                    <i data-lucide="log-out" class="w-4 h-4 ml-auto"></i>
+                </a>
+            </div>
+        </aside>
+
+        <!-- 2. CONTENIDO PRINCIPAL (Content) -->
+        <main id="content" class="grid-area: content; p-4 md:p-8 pb-24 md:pb-4 overflow-y-auto">
+            <header class="mb-8">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-gray-800">Bienvenido a Agro Factura</h1>
+                <p class="text-gray-500 mt-1 text-lg">Panel de Control General / Facturación</p>
+            </header>
+
+            <!-- Tarjetas de Resumen (Ejemplo de contenido moderno) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <!-- Tarjeta 1: Total Facturado -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-teal-100 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Total Facturado (Mes)</p>
+                        <p class="text-3xl font-bold text-teal-700 mt-1">$15,450.00</p>
+                    </div>
+                    <i data-lucide="trending-up" class="w-8 h-8 text-teal-400"></i>
+                </div>
+                <!-- Tarjeta 2: Productos Bajos en Stock -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-red-100 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Productos con Poco Stock</p>
+                        <p class="text-3xl font-bold text-red-600 mt-1">12</p>
+                    </div>
+                    <i data-lucide="alert-triangle" class="w-8 h-8 text-red-400"></i>
+                </div>
+                <!-- Tarjeta 3: Facturas Pendientes -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-amber-100 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Facturas Pendientes</p>
+                        <p class="text-3xl font-bold text-amber-600 mt-1">4</p>
+                    </div>
+                    <i data-lucide="clock" class="w-8 h-8 text-amber-400"></i>
+                </div>
+                <!-- Tarjeta 4: Flota en Tránsito -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-blue-100 flex items-center justify-between">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500">Camiones en Tránsito</p>
+                        <p class="text-3xl font-bold text-blue-600 mt-1">3</p>
+                    </div>
+                    <i data-lucide="route" class="w-8 h-8 text-blue-400"></i>
+                </div>
+            </div>
+
+            <!-- Sección de Tabla de Facturas Recientes (Ejemplo) -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">Facturas Recientes</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID Factura</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cliente</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <!-- Fila 1 -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-teal-600">AF-00102</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Agro Fresh S.A.</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$2,100.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Pagada</span>
+                                </td>
+                            </tr>
+                            <!-- Fila 2 -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-teal-600">AF-00103</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Distribuidora Rural</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$1,550.00</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-amber-100 text-amber-800">Pendiente</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Espacio extra para asegurar que el contenido no quede oculto detrás del tab bar en móvil -->
+            <div class="h-20 md:hidden"></div>
+
+        </main>
+
+        <!-- 3. BARRA DE PESTAÑAS INFERIOR (Bottom Tabs) - Visible en Mobile -->
+        <nav id="bottom-tabs" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-2xl z-20 md:hidden">
+            <div class="flex justify-around items-center h-16">
+
+                <!-- Tab 1: Facturación (Activo) -->
+                <a href="facturacion/facturacion.html" class="tab-item-mobile active">
+                    <i data-lucide="receipt-text" class="w-6 h-6"></i>
+                    <span class="text-xs">Facturar</span>
+                </a>
+                
+                <!-- Tab 2: Inventario -->
+                <a href="inventario/inventario.html" class="tab-item-mobile">
+                    <i data-lucide="boxes" class="w-6 h-6"></i>
+                    <span class="text-xs">Inventario</span>
+                </a>
+
+                <!-- Tab 3: Ubicaciones -->
+                <a href="ubicaciones/ubicaciones.html" class="tab-item-mobile">
+                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                    <span class="text-xs">Ubicaciones</span>
+                </a>
+                
+                <!-- Tab 4: Flota -->
+                <a href="flota/flota.html" class="tab-item-mobile">
+                    <i data-lucide="truck" class="w-6 h-6"></i>
+                    <span class="text-xs">Flota</span>
+                </a>
+                
+                <!-- Tab 5: Contabilidad -->
+                <a href="contabilidad/contabilidad.html" class="tab-item-mobile">
+                    <i data-lucide="wallet" class="w-6 h-6"></i>
+                    <span class="text-xs">Cuentas</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <script src="agro_factura_menu.js"></script> 
+</body>
+</html>
